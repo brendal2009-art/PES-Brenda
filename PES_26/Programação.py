@@ -3,7 +3,7 @@ valor_texto = str ("20,0")
 
 # Número
 # Int ou integer int é numero inteiro
-# Float ou float = 10,50 float é decimal
+#  float = 10,50 float é decimal
 # Texto: "20,0"
 # String ou str tudo que for entre parenteses, pode ser texto ou número
 # Verdadeiro ou falso: Boolean ou bool  
@@ -20,3 +20,8 @@ valor_texto = str ("20,0")
 # for é usado quando você sabe o número exato de vezes que deseja repetir um bloco de código
 # o while é usado quando você não sabe quantas vezes deseja repetir um bloco de código
 #for num in range (10, -1, -1): -> o ultimo -1 é o passo, ou seja, de quanto em quanto ele vai diminuir, nesse caso, de 1 em 1
+# len diz o tamanho da lista 
+# match "valor":    -> case 1:   print ("cenoura")  case 2 : print ("batata"), nao precisa usar if e else toda hora
+# break -> para o loop
+# break++ -> para o loop
+# continue -> pula para a próxima iteração do loop, ou seja, ele ignora o restante do código dentro do loop para a iteração atual e passa para a próxima iteração
