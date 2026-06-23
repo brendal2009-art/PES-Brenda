@@ -1,12 +1,8 @@
-divida = 1000.0
-juros = 15.3 / 100
+meses = int(input("Você esta devendo a quantos meses? "))
 
-meses = int(input("Digite a quantidade de meses: "))
-
-contador = 1
-
-while contador <= meses:
-    divida = divida + (divida * juros)
-    contador = contador + 1
-
-print("Dívida após", meses, "meses: R$", divida)
+if meses >= 24:
+    print("O tempo quitou a dívida pra você")
+else:
+    porcentagem = (1000*15.3)/100
+    valor = porcentagem*meses
+    print(f"Você esta devendo R${valor} ao banco.")
