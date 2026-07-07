@@ -25,3 +25,4 @@ valor_texto = str ("20,0")
 # break -> para o loop
 # break++ -> para o loop
 # continue -> pula para a próxima iteração do loop, ou seja, ele ignora o restante do código dentro do loop para a iteração atual e passa para a próxima iteração
+# append -> adiciona um elemento no final da lista, e remove o elemento da lista, caso ele já exista, para não ter elementos repetidos
