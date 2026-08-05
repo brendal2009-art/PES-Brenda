@@ -22,7 +22,7 @@ while posicao < quantidade:
     print("cidades:", cidades[posicao]) # exibe a cidade cadastrada
     posicao += 1
 
-print("Remova uma cidade lista.")
+print("Remova uma das cidades listadas.")
 excluir = input("Digite o nome da cidade que deseja remover: ")
 
 if excluir in cidades:
@@ -35,7 +35,8 @@ else:
 
 quantidade = len(cidades) # le o tamanho da lista de cidades cadastradas
 posicao= 0
+print('\nAs cidades listadas são: ')
 
 while posicao < quantidade:
- print("cidade: ", cidades[posicao]) # exibe a cidade cadastrada
- indice = indice + 1
+ print(cidades[posicao]) # exibe a cidade cadastrada 
+ posicao = posicao + 1

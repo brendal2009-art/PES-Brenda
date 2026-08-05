@@ -12,7 +12,7 @@ nota[3] = float(input("Informe a quarto nota do estudante:"))
 soma = 0
 
 for nums in nota:
-    soma += nums
+    soma += nums 
     media = soma / 4
 
 print('A média do estudandte foi: ',media,' então ele está...')
