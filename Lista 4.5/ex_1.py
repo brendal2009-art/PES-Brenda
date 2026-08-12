@@ -103,11 +103,11 @@ while opcao != 0:
     opcao = int(input("Digite a opção desejada: "))
 
     if opcao == 1:
-        cod = int("Digite o código do professor:")
-        nome = int(input("Digite o nome do professor;"))
+        cod = int(input("Digite o código do professor:"))
+        nome = int(input("Digite o nome do professor:"))
         professor.append({
-            "nome": nome, 
             "cod": cod,
+            "nome": nome, 
         })
 
     elif opcao == 2:
@@ -208,7 +208,7 @@ while opcao != 0:
             cod = input("Informe o código do professor que deseja excluir: ")
 
             if cod in acesso[lab]:
-                acesso[lab].remove(cod) #remove o codigo que tem acesso ao lab da lista de códigos dos professores que tem acesso ao laboratorio
+                acesso[lab].remove(cod) #remove o codigo que tem acesso no lab da lista de códigos dos professores que tem acesso ao laboratorio
                 print("Professor excluído do laboratório com sucesso!")
             else:
                 print("Este professor não possui acesso a este laboratório!")
@@ -219,8 +219,8 @@ while opcao != 0:
         print("Alterar professor do laboratório")
 
         print("Laboratórios disponíveis:")
-        for lab in laboratorios:
-            print(lab) #motra os labs disponíveis
+        for lab in laboratorios:""" """  """ """
+        print(lab) #motra os labs disponíveis
 
         lab = input("Informe o laboratório: ")
 
@@ -240,14 +240,12 @@ while opcao != 0:
                         print("Este professor já possui acesso a este laboratório!")
                     else:
                         indice = acesso[lab].index(alterado) #index descobre a posição de um elemento dentro de uma lista.
-                        acesso[lab][indice] = novo_cod 
+                        acesso[lab][indice] = novo_cod #substitui um código antigo por um código novo dentro da lista de acessos do laboratório.
                         print("Acesso alterado com sucesso!")
                 else:
                     print("Professor não encontrado!")
-
             else:
                 print("Este professor não possui acesso a este laboratório!")
-
         else:
             print("Laboratório inválido!")
 
@@ -256,15 +254,8 @@ while opcao != 0:
         print("Listar laboratórios")
 
         for lab in laboratorios:
-            print(f"\n{lab}")
+            print(f"\n{lab}") #lista os laboratorios
 
-            if len(acesso[lab]) == 0:
-                print("Nenhum professor possui acesso.")
-            else:
-                for cod in acesso[lab]:
-                    print(f"Código: {cod} - {professores[cod]}")
-
-
-    elif opcao == 0
+    elif opcao == 0:
         print("Encerrando programa...")
     break
