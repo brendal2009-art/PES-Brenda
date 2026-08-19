@@ -1,58 +1,4 @@
-'''1 - Nossa necessidade é utilizar o recurso de liberação de portas dos Laboratórios de
-Informática utilizando os dispositivos instalados em cada porta com fechadura eletrônica.
-Para tal, desenvolveremos um sistema que identifique e autorize a entrada dos
-professores já cadastrados no sistema de uso dos laboratórios.
-O sistema deve possuir:
-
-
-• Um cadastro completo de professores (adicionar, alterar, excluir e listar) que
-associe o código do professor ao seu nome, alguns professores já devem ser précadastrados, veja a lista abaixo;
-
-
-• Um cadastro completo dos acessos dos professores aos laboratórios (adicionar,
-alterar, excluir e listar), serão utilizados 6 laboratórios com as nomenclaturas
-Lab102, Lab103, Lab104, Lab105, Lab106, Lab107 – os laboratórios são fixos no
-sistema, o que pode ser alterado são os acessos, alguns professores já devem
-ser pré-cadastrados nos laboratórios, veja a outra lista abaixo (para facilitar a
-implementação, sugere-se que os laboratórios sejam associados ao código do
-professor e não ao seu nome);
-
-
-• Teste de acesso ao laboratório: deve ser possível informar o nome de um
-laboratório e um código de professor para verificar se o acesso é permitido ou não
-(por exemplo, nesse teste deveria ser possível escolher o Lab103 e informar o
-código de professor 002, nesse caso, o sistema deve negar o acesso).
-
-
-Pré-cadastro de Professores (códigos x nomes)
-
-001 – Prof Thiago Paes
-002 – Prof Schalata
-003 – Prof Ignácio
-004 – Prof Ryan
-005 – Prof André
-006 – Profª Fabiana
-007 – Prof Alberto
-008 – Prof Juliano
-009 – Prof Thiago Waltrik
-010 – Prof João Eduardo
-
-Pré-cadastro de Acessos (laboratório x professor)
-
-• Lab102 – Prof Ignácio, Prof Thiago Paes, Profª Ryan, Prof André, Profª Fabiana;
-
-• Lab103 – Prof Alberto;
-
-• Lab104 – Prof Ryan, Prof Juliano, Prof Schalata, Prof André;
-
-• Lab105 – Prof Ignácio, Prof Alberto, Prof Thiago Waltrik, Prof Thiago Paes;
-
-• Lab106 – Prof Schalata, Prof Ignácio, Prof Thiago Waltrik, Prof Thiago Paes;
-
-• Lab107 – Prof André, Prof Schalata, Prof Thiago Waltrik, Prof Thiago Paes, Prof João Eduardo.'''
-
-
-professor = { # { serve para quando queremos trabalhar com nome ou espaço específico
+professor = {
     "001": "Prof Thiago Paes",
     "002": "Prof Schalata",
     "003": "Prof Ignácio",
@@ -65,16 +11,16 @@ professor = { # { serve para quando queremos trabalhar com nome ou espaço espec
     "010": "Prof João Eduardo"
 }
 
-laboratorios = {
+laboratorios = [
     "Lab102",
     "Lab103",
     "Lab104",
     "Lab105",
     "Lab106",
     "Lab107"
-}
+]
 
-acesso = {
+acesso = {  # Cada laboratório possui uma lista com os códigos dos professores que possuem acesso
     "Lab102": ["003", "001", "004", "005", "006"],
     "Lab103": ["007"],
     "Lab104": ["004", "008", "002", "005"],
@@ -83,179 +29,271 @@ acesso = {
     "Lab107": ["005", "002", "009", "001", "010"]
 }
 
-   
+while True:
 
-opcao = -1
+    print("""
+        -MENU-
+--------------------------
+1 - Cadastrar professor
+2 - Excluir professor
+3 - Alterar professor
+4 - Listar professores
+5 - Adicionar professor ao laboratório
+6 - Excluir professor do laboratório
+7 - Alterar acesso ao laboratório
+8 - Listar laboratórios e acessos
+9 - Testar acesso ao laboratório
+0 - Sair
+""")
 
-while opcao != 0:
-    print ("""Menu:
-        ----
-        1 – Cadastrar professor;
-        2 - Excluir professor;
-        3 - Alterar professor;
-        4 - Listar professores;
-        5 - Labs: Adicionar professor
-        6 - Labs: Excluir professor
-        7 - Labs: Alterar professor
-        8 - Listar laboratórios
-        0 - Sair""")
-    
-    opcao = int(input("Digite a opção desejada: "))
+    opcao = input("Digite a opção desejada: ")
 
-    if opcao == 1:
-        cod = int(input("Digite o código do professor:"))
-        nome = int(input("Digite o nome do professor:"))
-        professor.append({
-            "cod": cod,
-            "nome": nome, 
-        })
-
-    elif opcao == 2:
-        print("Excluir")
+    if opcao == "1":
+        print("\n-CADASTRAR PROFESSOR-")
         
-        indice = 0
-        while indice<len(professor):
-            print(f'Código:{professor[indice]["cod"]} - {professor[indice]["nome"]}') #lista os professores ja cadastrados
-            indice = indice + 1 
-        
-        excluir = input("Quem você deseja excluir? (informe o código) ")
-        
-        indice = 0
+        cod = input("Digite o código do professor: ")
 
-        while indice < len(professor):
-            if professor[indice]["cod"] == excluir:
-                break
-            indice= indice + 1
+        if cod in professor: # se o cod desejado jà estiver na lista de professor...
+            print("Erro: este código já está cadastrado!")
 
-        professor.pop(indice) #pop remove um elemento da lista usando o índice.
-
-        print("Professor deletado com sucesso!")
-
-    elif opcao == 3:
-        print("Alterar")
-
-        indice = 0
-
-        while indice<len(professor):
-            print(f'Código:{professor[indice]["cod"]} - {professor[indice]["nome"]}')
-            indice+=1
-        alterar = input("Informe o código do professor que você deseja alterar:")
-        
-        indice = 0
-
-        while indice < len(professor):
-            if professor[indice]["cod"] == alterar:
-                break
-            indice+=1
-
-        professor[indice]["cod"]=(input("Qual o novo código?  "))
-        professor[indice]["nome"]=(input("Qual o novo nome?  "))
-
-    elif opcao == 4:
-        print("Listar")
-
-        if len(professor) == 0:
-            print("A lista está vazia, cadastre algum professor.")
         else:
-            indice = 0
-            while indice<len(professor):
-                print(f'Código:{professor[indice]["cod"]} - {professor[indice]["nome"]}')
-                indice+=1
+            nome = input("Digite o nome do professor: ")
 
-    elif opcao == 5:
-        print("Adicionar professor ao laboratório")
+            professor[cod] = nome #Coloca no dicionário "professor" o valor "nome", usando "cod" como chave. Ex: professor["011"] = "Prof Camila"
+            print("Professor cadastrado com sucesso!")
 
-        print("Laboratórios disponíveis:")
-        for lab in laboratorios: #mostra os laboratorios que estao disponiveis
-            print(lab)
+    elif opcao == "2":
 
-        lab = input("Informe o laboratório: ")
+        print("\n-EXCLUIR PROFESSOR-")
+        if len(professor) == 0: #len conta quantos elementos tem na lista de professor, se tiver 0 então nenhum pode ser excluído
+            print("Não existem professores cadastrados.")
 
-        if lab in laboratorios:
-            print("Professores cadastrados:") 
+        else:
+            for cod, nome in professor.items(): #o ".items()" percorre a chave e valor do dicionário. Ex: priemira volta-> cod = "001" nome = "Prof Thiago Paes"; segunda volta-> cod = "002" nome = "Prof Schalata"
 
-            for cod, nome in professor.items():
-                print(f"Código: {cod} - {nome}") #mostra o codigo e o nome dos professores cadastrados
+                print(f"Código: {cod} - {nome}") #código: 001 - Prof Thiago Paes
 
-            cod = input("Informe o código do professor: ")
+            cod = input("\nDigite o código do professor que deseja excluir: ")
 
-            if cod in professor:  
-                if cod in acesso[lab]: #se o cod ja estiver acesso no lab...
-                    print("Este professor já possui acesso a este laboratório!")
-                else:
-                    acesso[lab].append(cod) #se ele nao estiver acesso ainda, o cod é adicionado ao laboratorio
-                    print("Professor adicionado ao laboratório com sucesso!")
+            if cod in professor:
+
+                for lab in laboratorios: 
+                    if cod in acesso[lab]:
+                        acesso[lab].remove(cod) #antes de excluir o professor, removemos seus acessos aos laboratórios.
+
+                del professor[cod] #del exclui do dicionário professor o valor que está armazenada na variável cod. Ex: "003": "Prof Ignácio"
+                print("Professor excluído com sucesso!")
+
             else:
                 print("Professor não encontrado!")
-        else:
-            print("Laboratório inválido!")
 
-    elif opcao == 6:
-        print("Excluir professor do laboratório")
+    elif opcao == "3":
 
-        print("Laboratórios disponíveis:")
-        for lab in laboratorios:
-            print(lab) #mostra os labs disponíveis
+        print("\n-ALTERAR PROFESSOR-")
 
-        lab = input("Informe o laboratório: ") 
+        for cod, nome in professor.items():
+            print(f"Código: {cod} - {nome}")
 
-        if lab in laboratorios:
-            print(f"Professores com acesso ao {lab}:") #"profesores com acesso ao lab 107"
+        cod = input("\nDigite o código do professor que deseja alterar: ")
 
-            for cod in acesso[lab]:
-                print(f"Código: {cod} - {professor[cod]}") #mostra os professores que tem acesso ao laboratorio selecionado
+        if cod in professor: # se o cod estive no dicionario professor...
 
-            cod = input("Informe o código do professor que deseja excluir: ")
+            novo_cod = input("Digite o novo código: ")
 
-            if cod in acesso[lab]:
-                acesso[lab].remove(cod) #remove o codigo que tem acesso no lab da lista de códigos dos professores que tem acesso ao laboratorio
-                print("Professor excluído do laboratório com sucesso!")
+            if novo_cod != cod and novo_cod in professor: # O novo código é diferente do código atual? O novo código já pertence a outro professor?
+
+                print("Erro: o novo código já está cadastrado!")
+
             else:
-                print("Este professor não possui acesso a este laboratório!")
-        else:
-            print("Laboratório inválido!")
 
-    elif opcao == 7:
-        print("Alterar professor do laboratório")
+                novo_nome = input("Digite o novo nome: ")
 
-        print("Laboratórios disponíveis:")
-        for lab in laboratorios:""" """  """ """
-        print(lab) #motra os labs disponíveis
+                if novo_cod != cod: # Se o código mudou...
 
-        lab = input("Informe o laboratório: ")
+                    for lab in laboratorios: #Percorre os laboratórios.
 
-        if lab in laboratorios:
-            print(f"Professores com acesso ao {lab}:") #"profesores com acesso ao lab 107"
+                        if cod in acesso[lab]: #Procura o código antigo nos acessos.
 
-            for cod in acesso[lab]:
-                print(f"Código: {cod} - {professor[cod]}") #mostra os professores que tem acesso ao laboratorio selecionado
+                            indice = acesso[lab].index(cod) #.index() encontra a posição daquele código.
+                            acesso[lab][indice] = novo_cod #Substitui o código antigo pelo novo.
 
-            alterado = input("Informe o código do professor que deseja alterar: ")
+                    professor[novo_cod] = novo_nome #Cria o professor usando o novo código.
+                    del professor[cod] #Apaga o código antigo.
 
-            if alterado in acesso[lab]: # passa pela lista de acessos do lab
-                novo_cod = input("Informe o novo código do professor: ")
-
-                if novo_cod in professor:
-                    if novo_cod in acesso[lab]: # se o cod novo ja estiver na lista de acessos...
-                        print("Este professor já possui acesso a este laboratório!")
-                    else:
-                        indice = acesso[lab].index(alterado) #index descobre a posição de um elemento dentro de uma lista.
-                        acesso[lab][indice] = novo_cod #substitui um código antigo por um código novo dentro da lista de acessos do laboratório.
-                        print("Acesso alterado com sucesso!")
                 else:
-                    print("Professor não encontrado!")
-            else:
-                print("Este professor não possui acesso a este laboratório!")
+                    professor[cod] = novo_nome #Se o usuário não mudou o código, muda o nome.
+                print("Professor alterado com sucesso!")
+
         else:
+            print("Professor não encontrado!")
+
+    elif opcao == "4":
+
+        print("\n-PROFESSORES CADASTRADOS-")
+
+        if len(professor) == 0:
+            print("Nenhum professor cadastrado.")
+
+        else:
+
+            for cod, nome in professor.items():
+                print(f"Código: {cod} - {nome}")
+
+    elif opcao == "5":
+
+        print("\n-ADICIONAR ACESSO AO LABORATÓRIO-")
+
+        print("\nLaboratórios disponíveis:")
+
+        for lab in laboratorios: #percorre a lista de laboratórios e mostra os labs disponíveis
+            print(lab)
+
+        lab = input("\nDigite o laboratório desejado: ")
+
+        if lab not in laboratorios: #se o lab digitado não estiver na lista de laboratórios disponíveis...
             print("Laboratório inválido!")
 
+        else:
+            print("\nProfessores cadastrados:")
 
-    elif opcao == 8:
-        print("Listar laboratórios")
+            for cod, nome in professor.items():
+                print(f"Código: {cod} - {nome}")
+
+            cod = input("\nDigite o código do professor: ")
+
+            if cod not in professor: #se o codigo digitado não estiver na lista de professor...
+                print("Professor não encontrado!")
+
+            elif cod in acesso[lab]: #se o cod ja tiver acesso ao lab...
+                print("Este professor já possui acesso a este laboratório!")
+
+            else:
+                acesso[lab].append(cod) #adiciona o cod a lista de acesso dos labs
+                print("Acesso adicionado com sucesso!")
+
+    elif opcao == "6":
+
+        print("\n-EXCLUIR ACESSO AO LABORATÓRIO -")
+
+        print("\nLaboratórios disponíveis:")
 
         for lab in laboratorios:
-            print(f"\n{lab}") #lista os laboratorios
+            print(lab)
 
-    elif opcao == 0:
-        print("Encerrando programa...")
-    break
+        lab = input("\nDigite o laboratório: ")
+
+        if lab not in laboratorios: # se o lab digitado nao estiver na lista de laborátorios disponíveis...
+            print("Laboratório inválido!")
+
+        else:
+            print(f"\nProfessores com acesso ao {lab}:") #mostra os professores com acesso ao lab digitado
+
+            if len(acesso[lab]) == 0:
+                print("Nenhum professor possui acesso.")
+
+            else:
+                for cod in acesso[lab]:
+                    print(f"Código: {cod} - {professor[cod]}")
+
+                cod = input("\nDigite o código do professor que deseja excluir: ")
+
+                if cod in acesso[lab]:
+                    acesso[lab].remove(cod)
+                    print("Acesso excluído com sucesso!")
+
+                else:
+                    print("Este professor não possui acesso a este laboratório!")
+
+    elif opcao == "7":
+
+        print("\n-ALTERAR ACESSO AO LABORATÓRIO-")
+
+        print("\nLaboratórios disponíveis:")
+        for lab in laboratorios:
+            print(lab)
+
+        lab = input("\nDigite o laboratório: ")
+
+        if lab not in laboratorios:
+            print("Laboratório inválido!")
+
+        else:
+            print(f"\nProfessores com acesso ao {lab}:")
+
+            if len(acesso[lab]) == 0:
+                print("Nenhum professor possui acesso.")
+
+            else:
+                for cod in acesso[lab]:
+                    print(f"Código: {cod} - {professor[cod]}")
+
+                antigo_cod = input("\nDigite o código do professor que deseja alterar: ")
+
+                if antigo_cod not in acesso[lab]:
+                    print("Este professor não possui acesso a este laboratório!")
+
+                else:
+                    novo_cod = input("Digite o novo código do professor: ")
+
+                    if novo_cod not in professor:
+                        print("Professor não encontrado!")
+
+                    elif novo_cod in acesso[lab]:
+                        print("Este professor já possui acesso a este laboratório!")
+
+                    else:
+                        indice = acesso[lab].index(antigo_cod) #Descobre onde o código antigo está na lista.
+                        acesso[lab][indice] = novo_cod #Substitui o código antigo pelo novo.
+                        print("Acesso alterado com sucesso!")
+
+    elif opcao == "8":
+
+        print("\n-LABORATÓRIOS E ACESSOS-")
+
+        for lab in laboratorios:
+            print(f"\n{lab}")
+
+            if len(acesso[lab]) == 0:
+                print("  Nenhum professor possui acesso.")
+
+            else:
+                for cod in acesso[lab]:
+                    print(f"Código: {cod} - {professor[cod]}")
+
+    elif opcao == "9":
+
+        print("\n-TESTE DE ACESSO-")
+
+        print("\nLaboratórios disponíveis:")
+
+        for lab in laboratorios:
+            print(lab)
+
+        lab = input("\nDigite o laboratório: ")
+
+        if lab not in laboratorios:
+            print("Laboratório inválido!")
+
+        else:
+            cod = input("Digite o código do professor: ")
+
+            if cod not in professor:
+                print("Professor não encontrado!")
+
+            elif cod in acesso[lab]:
+                print("\nACESSO PERMITIDO!")
+
+                print(f"{professor[cod]} possui acesso ao {lab}.")
+
+            else:
+                print("\nACESSO NEGADO!")
+
+                print(f"{professor[cod]} NÃO possui acesso ao {lab}.")
+
+    elif opcao == "0":
+        print("\nEncerrando programa...")
+        break
+
+    else:
+
+        print("\nOpção inválida! Digite uma opção de 0 a 9.")
