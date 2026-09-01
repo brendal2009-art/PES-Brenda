@@ -11,5 +11,39 @@ Menu
 ----
 1 – Cadastrar
 2 – Listar todos
-0 – Sair '''
+0 – Sair'''
 
+códigos = [-1]*10
+
+posicao = 0
+
+while True:
+    print("\nMenu")
+    print("1 – Cadastrar")
+    print("2 – Listar todos")
+    print("0 – Sair")
+    op = int(input('Digite a opção: '))
+
+    if op == 1:
+        if posicao < 10:
+            codigo = int(input('Digite o codigo do produto: '))
+            if codigo != -1:
+                códigos[posicao] =  codigo
+                posicao = posicao + 1
+                print('código cadastrado com sucesso!')
+            else:
+                print('Código inválido.')
+        else:
+            print('Não há mais espaço para armazenar códigos.')
+    elif op == 2:
+        print('\nCódigos cadastrados:')
+        for codigo in códigos:
+            if codigo != -1:
+                print(codigo)
+
+    elif op == 0:
+        print('Você saiu do programa.')
+        break
+
+    else:
+        print('Opção inválida.')
