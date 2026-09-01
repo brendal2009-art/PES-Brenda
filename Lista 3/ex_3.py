@@ -13,11 +13,16 @@ Menu
 2 – Listar todos
 0 – Sair'''
 
+<<<<<<< HEAD
 códigos = [-1]*10
+=======
+codigos = [-1] * 10
+>>>>>>> 1c8ae899135b288de0979c0bdcf9e12fb4b0dead
 
 posicao = 0
 
 while True:
+<<<<<<< HEAD
     print("\nMenu")
     print("1 – Cadastrar")
     print("2 – Listar todos")
@@ -47,3 +52,30 @@ while True:
 
     else:
         print('Opção inválida.')
+=======
+    print('\nMenu', '\n----', '\n1 – Cadastrar', '\n2 – Listar todos', '\n0 – Sair')
+    opcao = int(input("Digite uma opção:"))
+
+    if opcao == 1: #se a opcao for a 1(Cadastrar)
+        if posicao < 10: #se a posição for menor q dez
+            codigo = int(input("Digite o código do produto"))
+            if codigo != - 1: # se o código nao for -1, ent codigo aceito
+                codigos[posicao] = codigo # "guarde o valor digitado (codigo) na posição posicao da lista codigos."
+                posicao =  posicao + 1 #contador aumenta mais 1 
+                print("Código cadastrado com sucesso")
+            else:
+                print("Código inválido")
+        else:
+            print("Não há mais esoaço para armazenar seus códigos.")
+    elif opcao == 2:
+        print('\n Códigos cadastrados:')
+        for codigo in codigos:
+            if codigo != -1:
+                print(codigo)
+    elif opcao == 0:
+        print("Fechando seu programa...")
+        break
+
+    else:
+        print("Opção inválida")
+>>>>>>> 1c8ae899135b288de0979c0bdcf9e12fb4b0dead
