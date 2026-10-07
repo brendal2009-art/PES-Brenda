@@ -1,9 +1,10 @@
 valor_numero = int("123")
 valor_texto = str ("20,0")
 
-# Número
+
 # Int ou integer int é numero inteiro
 #  float = 10,50 float é decimal
+# input = entrada de dados, ex: input("Digite um número: ")
 # Texto: "20,0"
 # String ou str tudo que for entre parenteses, pode ser texto ou número
 # Verdadeiro ou falso: Boolean ou bool  
@@ -26,3 +27,11 @@ valor_texto = str ("20,0")
 # break++ -> para o loop
 # continue -> pula para a próxima iteração do loop, ou seja, ele ignora o restante do código dentro do loop para a iteração atual e passa para a próxima iteração
 # append -> adiciona um elemento no final da lista, e remove o elemento da lista caso ele já exista, para não ter elementos repetidos
+
+# BIBLIOTECA PICKLE #
+
+# import pickle -> é uma biblioteca que permite salvar objetos em arquivos binários, e depois carregar esses objetos de volta para o programa (Importa a biblioteca.)
+# pickle.dump() -> é uma função da biblioteca pickle que permite salvar objetos em arquivos binários, e depois carregar esses objetos de volta para o programa (Salva os dados no arquivo.)
+# pickle.load() -> é uma função da biblioteca pickle que permite carregar objetos de arquivos binários, e depois carregar esses objetos de volta para o programa (Carrega os dados do arquivo.)
+# wb -> write binary, ou seja, escrever em binário, é usado para salvar arquivos binários
+# rb -> read binary, ou seja, ler em binário, é usado para ler arquivos binários
